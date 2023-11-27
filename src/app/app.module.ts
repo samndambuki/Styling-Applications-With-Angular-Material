@@ -8,13 +8,23 @@ import { Routes, RouterModule } from '@angular/router';
 import { DemoModule } from './demo/demo.module';
 
 const routes: Routes = [
+  //lazyload our contact manager
+  {
+    path: 'contactmanager',
+    loadChildren: () =>
+      import('./contactmanager/contactmanager.module').then(
+        (m) => m.ContactmanagerModule
+      ),
+  },
+
   //apply lazy loading for our demo module
   {
     path: 'demo',
     loadChildren: () => import('./demo/demo.module').then((m) => m.DemoModule),
   },
   //add a catch all routes that will redirect to the module
-  { path: '**', redirectTo: 'demo' },
+  //default redirectTo
+  { path: '**', redirectTo: 'contactmanager' },
 ];
 
 @NgModule({
