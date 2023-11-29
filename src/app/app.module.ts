@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Routes, RouterModule } from '@angular/router';
 import { DemoModule } from './demo/demo.module';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   //lazyload our contact manager
@@ -33,6 +34,7 @@ const routes: Routes = [
     BrowserModule,
     //enables angular animations system
     BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
   ],
   providers: [],
