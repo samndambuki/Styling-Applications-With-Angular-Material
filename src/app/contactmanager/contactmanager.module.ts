@@ -19,7 +19,10 @@ const routes: Routes = [
     //emoty string
     path: '',
     component: ContactmanagerAppComponent,
-    children: [{ path: '', component: MainContentComponent }],
+    children: [
+      { path: 'id', component: MainContentComponent },
+      { path: '', component: MainContentComponent },
+    ],
   },
   //change the wildcard to redirect to our root component
   { path: '**', redirectTo: '' },

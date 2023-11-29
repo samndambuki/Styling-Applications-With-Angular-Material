@@ -23,6 +23,13 @@ export class UserService {
     return this._users.asObservable();
   }
 
+  userById(id: number) {
+    //expect that our data store contains our users
+    //since one was hopefully clicked
+    //find the one in data store that has the same id
+    return this.dataStore.users.find((x) => x.id == id);
+  }
+
   loadAll() {
     const usersUrl = 'https://angular-material-api.azurewebsites.net/users';
     return this.http.get<User[]>(usersUrl).subscribe(
