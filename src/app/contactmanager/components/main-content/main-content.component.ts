@@ -9,7 +9,8 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./main-content.component.scss'],
 })
 export class MainContentComponent implements OnInit {
-  user: User;
+  //this tells typescript that user can be undefined intil its assigned in the ngOnInit method
+  user: User | undefined;
 
   constructor(private route: ActivatedRoute, private service: UserService) {}
 
