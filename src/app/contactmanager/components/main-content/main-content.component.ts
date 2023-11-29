@@ -10,7 +10,7 @@ import { UserService } from '../../services/user.service';
 })
 export class MainContentComponent implements OnInit {
   //this tells typescript that user can be undefined intil its assigned in the ngOnInit method
-  user: User | undefined;
+  user: User | null | undefined;
 
   constructor(private route: ActivatedRoute, private service: UserService) {}
 
@@ -18,10 +18,19 @@ export class MainContentComponent implements OnInit {
     //subscribe to the params observable
     this.route.params.subscribe((params) => {
       //get params id
-      const id = params['id'];
+      let id = params['id'];
+      if (!id) id = 1;
+      this.user = null;
       //want a method in our service that takes a number id and gives us a user
       //set our user to whatever the service returns to us
-      this.user = this.service.userById(id);
+
+      this.service.users.subscribe((users) => {
+        if (users.length == 0) return;
+        setTimeout(() => {
+          this.user = this.service.userById(id);
+        }, 500);
+        this.user = this.service.userById(id);
+      });
     });
   }
 }
